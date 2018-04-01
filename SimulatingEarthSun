@@ -1,0 +1,30 @@
+GlowScript 2.7 VPython
+box()
+
+r1=1.017 #Apehelion, distance farthest from the sun
+r2=0.983 # Perhilion, closest distance of the sun from the earth
+e=(r1-r2)/(r1+r2) # eccentricity of the elliptical orbit of the Earth 
+L=r1*(1-e) # Latus rectum
+
+sun=sphere(pos=vec(0,0,0),color=color.yellow,radius=2)
+i=0;
+t=arange(0,2*pi,pi/100) # theta range being specified, total 2*pi=360' and hence dividing into 200 intervals
+re=r=L/(1+e*cos(t[0]) ) #initialisation for the first parameter
+re1=r*cos(t[0])*10
+re2=r*sin(t[0])*10 
+a=vec(re1,re2,0) #initial position of the Earth
+earth=sphere(pos=a,color=color.blue,make_trail=True, radius=0.2); 
+
+while i<200: 
+    rate(10)
+    r=L/(1+e*cos(t[i]) )
+    a=r*cos(t[i]) 
+    b=r*sin(t[i])
+    earth.pos.x=a*10 # x position has been scaled to be able to see it more clearly 
+    earth.pos.y=b*10
+    print (i) 
+    print(a) 
+    print(b)
+    i=i+1
+ 
+ 
